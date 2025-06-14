@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+.AppBar-BackGroundColor{
+  background-color: green !important; 
+}
+#F-bKGcolor{
+  color: white;
+  background-color: green;
+}
+#menuItem{
+  background-color: green;
+}
+.BasicGrid-Margin{
+   margin: auto 30px;
+}
+#Grid-spacing{
+  justify-content: space-between;
+}
+.Box-pages-justifycontent{
+  justify-content: space-evenly;
+}
