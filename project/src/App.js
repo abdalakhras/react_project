@@ -3,6 +3,8 @@ import './App.css';
 import ResponsiveAppBar from './projComponents/navigation';
 import MediaCard from './projComponents/crads';
 import BasicGrid from './projComponents/grid';
+import ResponsiveDatePickers from './projComponents/calender';
+import BasicPie from './projComponents/chart';
 function App() {
   return (
     <div className="App">
@@ -10,6 +12,9 @@ function App() {
        <br/>
        
        <BasicGrid/>
+        <br/>
+        <ResponsiveDatePickers/>
+        <BasicPie/>
        
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
