@@ -5,32 +5,49 @@ import MediaCard from './projComponents/crads';
 import BasicGrid from './projComponents/grid';
 import ResponsiveDatePickers from './projComponents/calender';
 import BasicPie from './projComponents/chart';
+import Tasks from './projComponents/Tasks';
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import TimeClockValue from './projComponents/Time';
+
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: (theme.vars ?? theme).palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#1A2027',
+  }),
+}));
+
 function App() {
   return (
     <div className="App">
        <ResponsiveAppBar/>
        <br/>
+        <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid size={6}>
+          <Item><Tasks/></Item>
+        </Grid>
+        <Grid size={4}>
+          <Item><ResponsiveDatePickers/></Item>
+        </Grid>
+        <Grid size={4}>
+          <Item><BasicPie/></Item>
+        </Grid>
+        <Grid size={4}>
+          <Item><TimeClockValue/></Item>
+        </Grid>
+      </Grid>
+    </Box>
        
-       <BasicGrid/>
-        <br/>
-        <ResponsiveDatePickers/>
-        <BasicPie/>
-       
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-       
-      </header> */}
+      
     </div>
   );
 }
