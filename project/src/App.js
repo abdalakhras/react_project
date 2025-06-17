@@ -12,6 +12,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import TimeClockValue from './projComponents/Time';
+import ChartContext from './projComponents/chartContext';
+import { useState,useContext } from 'react';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -26,8 +28,13 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function App() {
+
+const[checkedValue,setCheckedValue]=useState(10)   
+
   return (
+     
     <div className="App">
+      <ChartContext.Provider value={{checkedValue,setCheckedValue}}>
        <ResponsiveAppBar/>
        <br/>
         <Box sx={{ flexGrow: 1 }}>
@@ -47,7 +54,7 @@ function App() {
       </Grid>
     </Box>
        
-      
+      </ChartContext.Provider>
     </div>
   );
 }

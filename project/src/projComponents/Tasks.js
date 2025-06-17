@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import '../projStyle/Tasks.css'
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
@@ -7,15 +7,17 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import ChartContext from "./chartContext";
 
 
+   
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function Tasks (){
 
-    
+    const{checkedValue,setCheckedValue}=useContext(ChartContext)   
 
     const[newTask,setNewTask]=useState('')
     const [iD,setID]=useState(-1)
@@ -35,6 +37,7 @@ export default function Tasks (){
    
 
     return(
+       
         <div className="tasks-body">
             <header>
             <h1>Tasks</h1>
@@ -54,7 +57,16 @@ export default function Tasks (){
              {listOfTasks.map((itm)=>(
                 <div key={itm.id} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
 
-               <Checkbox {...label} onClick={(e)=>{console.log(e.target.checked)}}/> 
+               <Checkbox {...label} onChange={(e)=>{
+                console.log(e.target.checked)
+                if(e.target.checked){
+                    setCheckedValue(1)
+                    console.log(checkedValue)
+                }else{
+                    setCheckedValue(10)
+                    console.log(checkedValue)
+                }
+                }}/> 
                 <p style={{ margin: 0 }}>{itm.taskname}</p>
                 <p style={{margin:"5px 10px"}}><span style={{color:'blue',}}>{'date'}</span></p>
                 <Button color="error" onClick={()=>{
@@ -68,5 +80,6 @@ export default function Tasks (){
              ))}
             </div>
         </div>
+        
     )
 }
