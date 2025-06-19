@@ -40,13 +40,17 @@ export default function Tasks (){
         // {id:2,taskname:'thirdTask'},
     ])
 
-    const [taskDates, setTaskDates] = useState(
-  listOfTasks.reduce((acc, task) => {
-    acc[task.id] = dayjs('2022-04-17');
-    return acc;
-  }, {})
-); // this is for the date field
 
+    const[taskDates,setTaskDates]=useState({}) // here we just set the taskDate as an object
+
+    // this is for the date field , we are creating an object for taskDates, and using the {id : } as a key
+//     const [taskDates, setTaskDates] = useState(
+//   listOfTasks.reduce((acc, task) => {
+//     acc[task.id] = dayjs('2022-04-17');
+//     return acc;
+//   }, {})
+// ); 
+// this is for the date field
    
 
     return(
@@ -88,11 +92,11 @@ export default function Tasks (){
         <DateField
           label="Controlled field"
           value={taskDates[itm.id]}
-          onChange={(newValue) => setTaskDates((prev)=>({...prev,[itm.id]:newValue})) }
+          onChange={(newValue) => setTaskDates({...taskDates,[itm.id]:newValue}) }
         />
       </DemoContainer>
       <Button onClick={()=>{
-       
+        console.log(taskDates)
         console.log(taskDates[itm.id].format('YYYY-MM-DD'))
         }}>set</Button>
     </LocalizationProvider>
