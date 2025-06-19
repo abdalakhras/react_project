@@ -8,7 +8,7 @@ import ChartContext from './chartContext';
 export default function BasicPie() {
 
   const {checkedValue} = useContext(ChartContext)
-
+  console.log (checkedValue)
   const x = 30-checkedValue
   console.log(checkedValue)
   console.log (x)

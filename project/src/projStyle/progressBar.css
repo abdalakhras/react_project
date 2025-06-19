@@ -1,0 +1,8 @@
+.prog-container{
+    background-color: aqua;
+    width: 100%;
+}
+.prog-green{
+    /* width: 20%; */
+    background-color: green;
+}

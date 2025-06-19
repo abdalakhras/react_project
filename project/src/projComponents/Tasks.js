@@ -60,11 +60,11 @@ export default function Tasks (){
                <Checkbox {...label} onChange={(e)=>{
                 console.log(e.target.checked)
                 if(e.target.checked){
-                    setCheckedValue(1)
                     console.log(checkedValue)
+                    setCheckedValue(checkedValue + 10)
+                    
                 }else{
-                    setCheckedValue(10)
-                    console.log(checkedValue)
+                     console.log(checkedValue)   
                 }
                 }}/> 
                 <p style={{ margin: 0 }}>{itm.taskname}</p>

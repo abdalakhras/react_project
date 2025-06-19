@@ -14,6 +14,7 @@ import Grid from '@mui/material/Grid';
 import TimeClockValue from './projComponents/Time';
 import ChartContext from './projComponents/chartContext';
 import { useState,useContext } from 'react';
+import Progress from './projComponents/progressBar';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -46,7 +47,7 @@ const[checkedValue,setCheckedValue]=useState(10)
           <Item><ResponsiveDatePickers/></Item>
         </Grid>
         <Grid size={4}>
-          <Item><BasicPie/></Item>
+          <Item><Progress/></Item>
         </Grid>
         <Grid size={4}>
           <Item><TimeClockValue/></Item>
