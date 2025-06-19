@@ -39,7 +39,10 @@ const [open, setOpen] = React.useState(false);
       <DemoContainer components={['DateCalendar', 'DateCalendar']}>
         <DemoItem label="Controlled calendar">
           <DateCalendar value={value} onChange={(newValue) => setValue(newValue)} />
-            <p style={{cursor:'pointer'}} onClick={handleOpen} >{value.format('YYYY-MM-DD')}</p>
+            <p style={{cursor:'pointer'}} onClick={()=>{
+              console.log(value.format('YYYY-MM-DD'))
+              handleOpen()
+            }} >{value.format('YYYY-MM-DD')}</p>
         </DemoItem>
       </DemoContainer>
 

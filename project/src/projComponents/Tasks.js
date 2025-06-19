@@ -8,7 +8,11 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ChartContext from "./chartContext";
-
+import dayjs from 'dayjs';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateField } from '@mui/x-date-pickers/DateField';
 
    
 
@@ -17,22 +21,31 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function Tasks (){
 
+    
     const{checkedValue,setCheckedValue}=useContext(ChartContext)   
 
     const[newTask,setNewTask]=useState('')
     const [iD,setID]=useState(-1)
     const taskObject= {id:iD, taskname:newTask, }
 
+   
+ 
+   
+
     
     
-
-
     const[listOfTasks,setListOfTasks] =useState([
         {id:0,taskname:'firstTask'},
         {id:1,taskname:'secondTask'},
-        {id:2,taskname:'thirdTask'},
+        // {id:2,taskname:'thirdTask'},
     ])
 
+    const [taskDates, setTaskDates] = useState(
+  listOfTasks.reduce((acc, task) => {
+    acc[task.id] = dayjs('2022-04-17');
+    return acc;
+  }, {})
+); // this is for the date field
 
    
 
@@ -48,7 +61,7 @@ export default function Tasks (){
                 setID(listOfTasks.length)
                setListOfTasks([...listOfTasks,taskObject])
                console.log(iD)
-
+               
             }}> 
             <input type="text" placeholder="Add a Task" onChange={(e)=>{setNewTask(e.target.value)}}></input>
             <Button color="success" type="submit">ADD</Button>
@@ -69,16 +82,43 @@ export default function Tasks (){
                 }}/> 
                 <p style={{ margin: 0 }}>{itm.taskname}</p>
                 <p style={{margin:"5px 10px"}}><span style={{color:'blue',}}>{'date'}</span></p>
+                {/* this is the date part */}
+     <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={['DateField', 'DateField']}>
+        <DateField
+          label="Controlled field"
+          value={taskDates[itm.id]}
+          onChange={(newValue) => setTaskDates((prev)=>({...prev,[itm.id]:newValue})) }
+        />
+      </DemoContainer>
+      <Button onClick={()=>{
+       
+        console.log(taskDates[itm.id].format('YYYY-MM-DD'))
+        }}>set</Button>
+    </LocalizationProvider>
+
                 <Button color="error" onClick={()=>{
                     const newListOfTasks = listOfTasks.filter((t)=>{
                        return t.id != itm.id
                     })
                     setListOfTasks(newListOfTasks)
                 }}><DeleteForeverIcon/></Button>
+
+                
                     
                 </div>
              ))}
+
+
+
             </div>
+
+
+
+  
+
+
+
         </div>
         
     )
