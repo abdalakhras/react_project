@@ -13,6 +13,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateField } from '@mui/x-date-pickers/DateField';
+import TaskDateContext from "./taskDateContext";
 
    
 
@@ -41,7 +42,7 @@ export default function Tasks (){
     ])
 
 
-    const[taskDates,setTaskDates]=useState({}) // here we just set the taskDate as an object
+    const[taskDates,setTaskDates]=useContext(TaskDateContext) // here we just set the taskDate as an object
 
     // this is for the date field , we are creating an object for taskDates, and using the {id : } as a key
 //     const [taskDates, setTaskDates] = useState(

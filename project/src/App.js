@@ -15,6 +15,7 @@ import TimeClockValue from './projComponents/Time';
 import ChartContext from './projComponents/chartContext';
 import { useState,useContext } from 'react';
 import Progress from './projComponents/progressBar';
+import TaskDateContext from './projComponents/taskDateContext';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -30,12 +31,15 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function App() {
 
-const[checkedValue,setCheckedValue]=useState(10)   
+const[checkedValue,setCheckedValue]=useState(10)  
+
+const[taskDates,setTaskDates]=useState({}) 
 
   return (
      
     <div className="App">
       <ChartContext.Provider value={{checkedValue,setCheckedValue}}>
+        <TaskDateContext.Provider value={{taskDates,setTaskDates}} >
        <ResponsiveAppBar/>
        <br/>
         <Box sx={{ flexGrow: 1 }}>
@@ -54,7 +58,7 @@ const[checkedValue,setCheckedValue]=useState(10)
         </Grid>
       </Grid>
     </Box>
-       
+       </TaskDateContext.Provider>
       </ChartContext.Provider>
     </div>
   );
