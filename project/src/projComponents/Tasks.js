@@ -26,7 +26,7 @@ export default function Tasks (){
     const{checkedValue,setCheckedValue}=useContext(ChartContext)   
 
     const[newTask,setNewTask]=useState('')
-    const [iD,setID]=useState(-1)
+    const [iD,setID]=useState(null)
     const taskObject= {id:iD, taskname:newTask, }
 
    
@@ -36,13 +36,13 @@ export default function Tasks (){
     
     
     const[listOfTasks,setListOfTasks] =useState([
-        {id:0,taskname:'firstTask'},
-        {id:1,taskname:'secondTask'},
+        // {id:-1,taskname:'firstTask'},
+        // {id:0,taskname:'secondTask'},
         // {id:2,taskname:'thirdTask'},
     ])
 
 
-    const[taskDates,setTaskDates]=useContext(TaskDateContext) // here we just set the taskDate as an object
+    const{taskDates,setTaskDates,taskId,setTaskId}=useContext(TaskDateContext) // here we just set the taskDate as an object
 
     // this is for the date field , we are creating an object for taskDates, and using the {id : } as a key
 //     const [taskDates, setTaskDates] = useState(
@@ -62,10 +62,11 @@ export default function Tasks (){
             </header>
             <br/>
             <form onSubmit={(e)=>{
-                e.preventDefault()
-                setID(listOfTasks.length)
+                e.preventDefault()  
                setListOfTasks([...listOfTasks,taskObject])
+               setID(listOfTasks.length)
                console.log(iD)
+               console.log('listOfTasks:', listOfTasks)
                
             }}> 
             <input type="text" placeholder="Add a Task" onChange={(e)=>{setNewTask(e.target.value)}}></input>
@@ -73,7 +74,7 @@ export default function Tasks (){
             </form>
             <div>
              {listOfTasks.map((itm)=>(
-                <div key={itm.id} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div key={itm.id} itm={itm}  style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
 
                <Checkbox {...label} onChange={(e)=>{
                 console.log(e.target.checked)
@@ -93,7 +94,11 @@ export default function Tasks (){
         <DateField
           label="Controlled field"
           value={taskDates[itm.id]}
-          onChange={(newValue) => setTaskDates({...taskDates,[itm.id]:newValue}) }
+          onChange={(newValue) => {
+            setTaskDates({...taskDates,[itm.id]:newValue})
+            setTaskId(itm.id)
+            console.log(` taskId is : ${taskId} `)
+           } }
         />
       </DemoContainer>
       <Button onClick={()=>{

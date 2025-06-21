@@ -16,6 +16,7 @@ import ChartContext from './projComponents/chartContext';
 import { useState,useContext } from 'react';
 import Progress from './projComponents/progressBar';
 import TaskDateContext from './projComponents/taskDateContext';
+import dayjs from 'dayjs';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -33,13 +34,14 @@ function App() {
 
 const[checkedValue,setCheckedValue]=useState(10)  
 
-const[taskDates,setTaskDates]=useState({}) 
+const[taskDates,setTaskDates]=useState({})
+const [taskId,setTaskId] = useState(null)
 
   return (
      
     <div className="App">
       <ChartContext.Provider value={{checkedValue,setCheckedValue}}>
-        <TaskDateContext.Provider value={{taskDates,setTaskDates}} >
+        <TaskDateContext.Provider value={{taskDates,setTaskDates,taskId,setTaskId}} >
        <ResponsiveAppBar/>
        <br/>
         <Box sx={{ flexGrow: 1 }}>

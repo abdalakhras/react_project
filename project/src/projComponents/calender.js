@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { useContext } from 'react';
+import TaskDateContext from './taskDateContext';
 
 
 const style = {
@@ -34,6 +36,20 @@ const [open, setOpen] = React.useState(false);
   // this value is for the calender
   const [value, setValue] = React.useState(dayjs('2025-06-17'));
 
+   const {taskDates,taskId} = useContext(TaskDateContext) // this is for the date of the task
+    const currentDate = taskDates[taskId];
+    console.log(taskDates)
+    console.log('taskDates[taskId]:',currentDate)
+//  console.log(value)
+
+ // check thier formated strings 
+
+// if (taskDates.format() === value.format()) {      
+//   console.log("hello");
+//   console.log(taskDates.format('YYYY-MM-DD '))
+//   console.log(value.format('YYYY-MM-DD'))
+// }
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DateCalendar', 'DateCalendar']}>
@@ -41,8 +57,11 @@ const [open, setOpen] = React.useState(false);
           <DateCalendar value={value} onChange={(newValue) => setValue(newValue)} />
             <p style={{cursor:'pointer'}} onClick={()=>{
               console.log(value.format('YYYY-MM-DD'))
+              
               handleOpen()
-            }} >{value.format('YYYY-MM-DD')}</p>
+            }} 
+            >{value.format('YYYY-MM-DD')}</p>
+
         </DemoItem>
       </DemoContainer>
 
