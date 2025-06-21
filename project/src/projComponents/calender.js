@@ -36,13 +36,26 @@ const [open, setOpen] = React.useState(false);
   // this value is for the calender
   const [value, setValue] = React.useState(dayjs('2025-06-17'));
 
-   const {taskDates,taskId} = useContext(TaskDateContext) // this is for the date of the task
+   
+  const {taskDates,taskId,transTask} = useContext(TaskDateContext) // this is for the date of the task
+
+  const [newTaskId,setNewTaskId]=React.useState({})
+
     const currentDate = taskDates[taskId];
+    const currentTask = transTask[taskId]
+    console.log(transTask)
     console.log(taskDates)
+    console.log(taskId)
     console.log('taskDates[taskId]:',currentDate)
-//  console.log(value)
+    console.log('calender value :',value)
+    console.log('transTask [taskId]:',currentTask)
 
  // check thier formated strings 
+
+if (currentDate && currentDate.isSame(value)) {
+  console.log("Dates match!");
+}
+
 
 // if (taskDates.format() === value.format()) {      
 //   console.log("hello");
@@ -57,8 +70,11 @@ const [open, setOpen] = React.useState(false);
           <DateCalendar value={value} onChange={(newValue) => setValue(newValue)} />
             <p style={{cursor:'pointer'}} onClick={()=>{
               console.log(value.format('YYYY-MM-DD'))
-              
-              handleOpen()
+              setNewTaskId({...newTaskId,[taskId]:taskId})
+              console.log("newTaskId : " , newTaskId)
+              if (currentDate && currentDate.isSame(value)) {
+                handleOpen()
+              }
             }} 
             >{value.format('YYYY-MM-DD')}</p>
 
@@ -78,7 +94,7 @@ const [open, setOpen] = React.useState(false);
             Text in a modal
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            {currentTask}
           </Typography>
         </Box>
       </Modal>

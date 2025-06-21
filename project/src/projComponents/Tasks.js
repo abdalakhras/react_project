@@ -42,17 +42,14 @@ export default function Tasks (){
     ])
 
 
-    const{taskDates,setTaskDates,taskId,setTaskId}=useContext(TaskDateContext) // here we just set the taskDate as an object
-
+    const{taskDates,setTaskDates,taskId,setTaskId,transTask,setTransTask}=useContext(TaskDateContext) // here we just set the taskDate as an object
     // this is for the date field , we are creating an object for taskDates, and using the {id : } as a key
-//     const [taskDates, setTaskDates] = useState(
-//   listOfTasks.reduce((acc, task) => {
-//     acc[task.id] = dayjs('2022-04-17');
-//     return acc;
-//   }, {})
-// ); 
-// this is for the date field
-   
+
+    
+
+
+
+
 
     return(
        
@@ -97,6 +94,7 @@ export default function Tasks (){
           onChange={(newValue) => {
             setTaskDates({...taskDates,[itm.id]:newValue})
             setTaskId(itm.id)
+            setTransTask({...transTask,[itm.id]:itm.taskname})
             console.log(` taskId is : ${taskId} `)
            } }
         />
@@ -119,7 +117,7 @@ export default function Tasks (){
                 </div>
              ))}
 
-
+             
 
             </div>
 

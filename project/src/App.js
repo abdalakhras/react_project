@@ -17,7 +17,7 @@ import { useState,useContext } from 'react';
 import Progress from './projComponents/progressBar';
 import TaskDateContext from './projComponents/taskDateContext';
 import dayjs from 'dayjs';
-
+import DateCalendarValue from './projComponents/calender';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -36,12 +36,13 @@ const[checkedValue,setCheckedValue]=useState(10)
 
 const[taskDates,setTaskDates]=useState({})
 const [taskId,setTaskId] = useState(null)
+const[transTask,setTransTask]=useState({})
 
   return (
      
     <div className="App">
       <ChartContext.Provider value={{checkedValue,setCheckedValue}}>
-        <TaskDateContext.Provider value={{taskDates,setTaskDates,taskId,setTaskId}} >
+        <TaskDateContext.Provider value={{taskDates,setTaskDates,taskId,setTaskId,transTask,setTransTask}} >
        <ResponsiveAppBar/>
        <br/>
         <Box sx={{ flexGrow: 1 }}>
@@ -50,7 +51,7 @@ const [taskId,setTaskId] = useState(null)
           <Item><Tasks/></Item>
         </Grid>
         <Grid size={4}>
-          <Item><ResponsiveDatePickers/></Item>
+          <Item><ResponsiveDatePickers /></Item>
         </Grid>
         <Grid size={4}>
           <Item><Progress/></Item>
