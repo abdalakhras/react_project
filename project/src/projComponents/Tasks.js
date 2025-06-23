@@ -95,7 +95,7 @@ export default function Tasks (){
           value={taskDates[itm.id]}
           onChange={(newValue) => {
             setTaskDates({...taskDates,[itm.id]:newValue})
-            setTaskId({...taskId,[itm.id]:itm.id})
+            setTaskId(itm.id)
             setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname}])
             console.log('taskId is:', taskId )
            } }

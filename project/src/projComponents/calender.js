@@ -35,7 +35,8 @@ const [open, setOpen] = React.useState(false);
 
   // this value is for the calender
   const [value, setValue] = React.useState(dayjs('2025-06-17'));
-  const [calendID,setCalendId]= React.useState(0)
+
+  // const [calendID,setCalendId]= React.useState(0)
    
   const {taskDates,taskId,transTask} = useContext(TaskDateContext) // this is for the date of the task
 let id;
@@ -44,12 +45,6 @@ let currentTask ;
 console.log(transTask)
 console.log('taskId : ',taskId)
 
-    
-    
-  //  currentDate = taskDates[id];
-  //  currentTask = transTask[id]
-  // console.log("currentDate:",currentDate);
-  // console.log("currentTask:", currentTask);
   
     // console.log("transTask : " ,transTask)
     // console.log("taskDates : ",taskDates)
@@ -82,7 +77,7 @@ console.log('taskId : ',taskId)
              
               
               if (currentDate && currentDate.isSame(value)) {
-                setCalendId()
+                
                 handleOpen()
               }
             }} 
