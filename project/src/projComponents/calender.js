@@ -40,6 +40,9 @@ const [open, setOpen] = React.useState(false);
    
   const {taskDates,taskId,transTask} = useContext(TaskDateContext) // this is for the date of the task
 
+ const [selectedTaskName, setSelectedTaskName] = React.useState("");
+
+
 let currentDate;
 let currentTask;
 
@@ -52,17 +55,17 @@ let currentTask;
 
 // let currentDate = taskDates[taskId]
 
- transTask.map((it)=>{
-console.log('transTask id :', it.transTaskId)
-console.log('transTask task :', it.transTaskName)
-const newDate = taskDates[it.transTaskId] 
-console.log('newDate of it.transTaskId : ',newDate)
+//  transTask.map((it)=>{
+// console.log('transTask id :', it.transTaskId)
+// console.log('transTask task :', it.transTaskName)
+// const newDate = taskDates[it.transTaskId] 
+// console.log('newDate of it.transTaskId : ',newDate)
 
 
-if (newDate && newDate.isSame(value)) {
-  console.log("Dates match!");
-}
-})
+// if (newDate && newDate.isSame(value)) {
+//   console.log("Dates match!");
+// }
+// })
 
 
 
@@ -93,13 +96,16 @@ if (newDate && newDate.isSame(value)) {
           <DateCalendar value={value} onChange={(newValue) => {setValue(newValue)}} />
             
             <Button style={{cursor:'pointer'}} onClick={()=>{
-              console.log(value.format('YYYY-MM-DD'))
-      
-              
-              // if (currentDate && currentDate.isSame(value)) {
-                
-              //   handleOpen()
-              // }
+              // console.log(value.format('YYYY-MM-DD'))
+              transTask.forEach(itm => {
+                const newDate = taskDates[itm.transTaskId]
+                console.log(newDate)
+                if (newDate && newDate.isSame(value)){
+                  setSelectedTaskName(itm.transTaskName)
+                   handleOpen()
+                }
+              });
+            
             }} 
             >{value.format('YYYY-MM-DD')}</Button>
            
@@ -119,7 +125,7 @@ if (newDate && newDate.isSame(value)) {
             Text in a modal
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {currentTask}
+            {selectedTaskName}
           </Typography>
         </Box>
       </Modal>
