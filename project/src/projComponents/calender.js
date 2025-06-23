@@ -54,11 +54,13 @@ let currentDate = taskDates[taskId]
 console.log('transTask id :', it.transTaskId)
 console.log('transTask task :', it.transTaskName)
 const newDate = taskDates[it.transTaskId] 
+console.log('taskDate: ',taskDates)
 console.log('newDate of it.transTaskId : ',newDate)
 
 
 if (newDate && newDate.isSame(value)) {
   console.log("Dates match!");
+  console.log(it.transTaskName)
 }
 })
 
@@ -87,12 +89,12 @@ if (newDate && newDate.isSame(value)) {
             
             <Button style={{cursor:'pointer'}} onClick={()=>{
               // console.log(value.format('YYYY-MM-DD'))
-              transTask.map(itm => {
-                const newDate = taskDates[itm.transTaskId]
+              transTask.map(t => {
+                const newDate = taskDates[t.transTaskId]
                 console.log(newDate)
                 if (newDate && newDate.isSame(value)){
                   console.log('Dates Match !')
-                  setNewTaskName(itm.transTaskName)
+                  setNewTaskName(t.transTaskName)
                    handleOpen()
                 }
               });
