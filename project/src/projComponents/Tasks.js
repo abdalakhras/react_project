@@ -73,7 +73,7 @@ export default function Tasks (){
             </form>
             <div>
              {listOfTasks.map((itm)=>(
-                <div key={itm.id} itm={itm}  style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div key={itm.id}   style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
 
                <Checkbox {...label} onChange={(e)=>{
                 console.log(e.target.checked)

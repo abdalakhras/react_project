@@ -39,13 +39,33 @@ const [open, setOpen] = React.useState(false);
   // const [calendID,setCalendId]= React.useState(0)
    
   const {taskDates,taskId,transTask} = useContext(TaskDateContext) // this is for the date of the task
-let id;
-let currentDate ; 
-let currentTask ; 
-console.log(transTask)
-console.log('taskId : ',taskId)
 
-  
+let currentDate;
+let currentTask;
+
+// console.log(taskDates)
+// console.log(taskDates[1])
+// console.log(taskDates[taskId])
+// console.log(transTask)
+// console.log('taskId : ',taskId)
+
+
+// let currentDate = taskDates[taskId]
+
+ transTask.map((it)=>{
+console.log('transTask id :', it.transTaskId)
+console.log('transTask task :', it.transTaskName)
+const newDate = taskDates[it.transTaskId] 
+console.log('newDate of it.transTaskId : ',newDate)
+
+
+if (newDate && newDate.isSame(value)) {
+  console.log("Dates match!");
+}
+})
+
+
+
     // console.log("transTask : " ,transTask)
     // console.log("taskDates : ",taskDates)
     // console.log("taskId : ",taskId)
@@ -71,18 +91,18 @@ console.log('taskId : ',taskId)
       <DemoContainer components={['DateCalendar', 'DateCalendar']}>
         <DemoItem label="Controlled calendar">
           <DateCalendar value={value} onChange={(newValue) => {setValue(newValue)}} />
-
+            
             <Button style={{cursor:'pointer'}} onClick={()=>{
               console.log(value.format('YYYY-MM-DD'))
-             
+      
               
-              if (currentDate && currentDate.isSame(value)) {
+              // if (currentDate && currentDate.isSame(value)) {
                 
-                handleOpen()
-              }
+              //   handleOpen()
+              // }
             }} 
             >{value.format('YYYY-MM-DD')}</Button>
-
+           
         </DemoItem>
       </DemoContainer>
 
@@ -103,8 +123,10 @@ console.log('taskId : ',taskId)
           </Typography>
         </Box>
       </Modal>
+      
     </div>
-
+    
+                
 
     </LocalizationProvider>
   );
