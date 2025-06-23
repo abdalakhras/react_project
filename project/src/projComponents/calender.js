@@ -35,26 +35,34 @@ const [open, setOpen] = React.useState(false);
 
   // this value is for the calender
   const [value, setValue] = React.useState(dayjs('2025-06-17'));
-
+  const [calendID,setCalendId]= React.useState(0)
    
   const {taskDates,taskId,transTask} = useContext(TaskDateContext) // this is for the date of the task
+let id;
+let currentDate ; 
+let currentTask ; 
+console.log(transTask)
+console.log('taskId : ',taskId)
 
-  const [newTaskId,setNewTaskId]=React.useState({})
-
-    const currentDate = taskDates[taskId];
-    const currentTask = transTask[taskId]
-    console.log(transTask)
-    console.log(taskDates)
-    console.log(taskId)
-    console.log('taskDates[taskId]:',currentDate)
-    console.log('calender value :',value)
-    console.log('transTask [taskId]:',currentTask)
+    
+    
+  //  currentDate = taskDates[id];
+  //  currentTask = transTask[id]
+  // console.log("currentDate:",currentDate);
+  // console.log("currentTask:", currentTask);
+  
+    // console.log("transTask : " ,transTask)
+    // console.log("taskDates : ",taskDates)
+    // console.log("taskId : ",taskId)
+    // console.log('taskDates[taskId]:',currentDate)
+    // console.log('calender value :',value)
+    // console.log('transTask [taskId]:',currentTask)
 
  // check thier formated strings 
 
-if (currentDate && currentDate.isSame(value)) {
-  console.log("Dates match!");
-}
+// if (currentDate && currentDate.isSame(value)) {
+//   console.log("Dates match!");
+// }
 
 
 // if (taskDates.format() === value.format()) {      
@@ -67,16 +75,18 @@ if (currentDate && currentDate.isSame(value)) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DateCalendar', 'DateCalendar']}>
         <DemoItem label="Controlled calendar">
-          <DateCalendar value={value} onChange={(newValue) => setValue(newValue)} />
-            <p style={{cursor:'pointer'}} onClick={()=>{
+          <DateCalendar value={value} onChange={(newValue) => {setValue(newValue)}} />
+
+            <Button style={{cursor:'pointer'}} onClick={()=>{
               console.log(value.format('YYYY-MM-DD'))
-              setNewTaskId({...newTaskId,[taskId]:taskId})
-              console.log("newTaskId : " , newTaskId)
+             
+              
               if (currentDate && currentDate.isSame(value)) {
+                setCalendId()
                 handleOpen()
               }
             }} 
-            >{value.format('YYYY-MM-DD')}</p>
+            >{value.format('YYYY-MM-DD')}</Button>
 
         </DemoItem>
       </DemoContainer>

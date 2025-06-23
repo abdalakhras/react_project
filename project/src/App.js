@@ -35,8 +35,8 @@ function App() {
 const[checkedValue,setCheckedValue]=useState(10)  
 
 const[taskDates,setTaskDates]=useState({})
-const [taskId,setTaskId] = useState(null)
-const[transTask,setTransTask]=useState({})
+const [taskId,setTaskId] = useState(-10)
+const[transTask,setTransTask]=useState([])
 
   return (
      

@@ -26,7 +26,7 @@ export default function Tasks (){
     const{checkedValue,setCheckedValue}=useContext(ChartContext)   
 
     const[newTask,setNewTask]=useState('')
-    const [iD,setID]=useState(null)
+    const [iD,setID]=useState(0)
     const taskObject= {id:iD, taskname:newTask, }
 
    
@@ -36,7 +36,7 @@ export default function Tasks (){
     
     
     const[listOfTasks,setListOfTasks] =useState([
-        // {id:-1,taskname:'firstTask'},
+        {id:-1,taskname:'Firts Task'},
         // {id:0,taskname:'secondTask'},
         // {id:2,taskname:'thirdTask'},
     ])
@@ -60,8 +60,10 @@ export default function Tasks (){
             <br/>
             <form onSubmit={(e)=>{
                 e.preventDefault()  
+
+                setID(listOfTasks.length)
                setListOfTasks([...listOfTasks,taskObject])
-               setID(listOfTasks.length)
+                console.log(listOfTasks.length)
                console.log(iD)
                console.log('listOfTasks:', listOfTasks)
                
@@ -93,9 +95,9 @@ export default function Tasks (){
           value={taskDates[itm.id]}
           onChange={(newValue) => {
             setTaskDates({...taskDates,[itm.id]:newValue})
-            setTaskId(itm.id)
-            setTransTask({...transTask,[itm.id]:itm.taskname})
-            console.log(` taskId is : ${taskId} `)
+            setTaskId({...taskId,[itm.id]:itm.id})
+            setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname}])
+            console.log('taskId is:', taskId )
            } }
         />
       </DemoContainer>
