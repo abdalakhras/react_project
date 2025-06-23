@@ -40,41 +40,31 @@ const [open, setOpen] = React.useState(false);
    
   const {taskDates,taskId,transTask} = useContext(TaskDateContext) // this is for the date of the task
 
- const [selectedTaskName, setSelectedTaskName] = React.useState("");
-
-
-let currentDate;
-let currentTask;
-
-// console.log(taskDates)
-// console.log(taskDates[1])
-// console.log(taskDates[taskId])
-// console.log(transTask)
-// console.log('taskId : ',taskId)
-
-
-// let currentDate = taskDates[taskId]
-
-//  transTask.map((it)=>{
-// console.log('transTask id :', it.transTaskId)
-// console.log('transTask task :', it.transTaskName)
-// const newDate = taskDates[it.transTaskId] 
-// console.log('newDate of it.transTaskId : ',newDate)
-
-
-// if (newDate && newDate.isSame(value)) {
-//   console.log("Dates match!");
-// }
-// })
+ const [newTaskName, setNewTaskName] = React.useState("");
 
 
 
-    // console.log("transTask : " ,transTask)
-    // console.log("taskDates : ",taskDates)
-    // console.log("taskId : ",taskId)
-    // console.log('taskDates[taskId]:',currentDate)
-    // console.log('calender value :',value)
-    // console.log('transTask [taskId]:',currentTask)
+
+
+
+
+let currentDate = taskDates[taskId]
+
+ transTask.map((it)=>{
+console.log('transTask id :', it.transTaskId)
+console.log('transTask task :', it.transTaskName)
+const newDate = taskDates[it.transTaskId] 
+console.log('newDate of it.transTaskId : ',newDate)
+
+
+if (newDate && newDate.isSame(value)) {
+  console.log("Dates match!");
+}
+})
+
+
+
+
 
  // check thier formated strings 
 
@@ -97,11 +87,12 @@ let currentTask;
             
             <Button style={{cursor:'pointer'}} onClick={()=>{
               // console.log(value.format('YYYY-MM-DD'))
-              transTask.forEach(itm => {
+              transTask.map(itm => {
                 const newDate = taskDates[itm.transTaskId]
                 console.log(newDate)
                 if (newDate && newDate.isSame(value)){
-                  setSelectedTaskName(itm.transTaskName)
+                  console.log('Dates Match !')
+                  setNewTaskName(itm.transTaskName)
                    handleOpen()
                 }
               });
@@ -125,7 +116,7 @@ let currentTask;
             Text in a modal
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {selectedTaskName}
+            {newTaskName}
           </Typography>
         </Box>
       </Modal>
