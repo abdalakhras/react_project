@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext, useState } from 'react';
 import dayjs from 'dayjs';
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -8,9 +8,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { useContext } from 'react';
 import TaskDateContext from './taskDateContext';
-
 
 const style = {
   position: 'absolute',
@@ -24,109 +22,36 @@ const style = {
   p: 4,
 };
 
-
 export default function DateCalendarValue() {
-// this is for the popup modal
-const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(dayjs());
+  const [newTaskName, setNewTaskName] = useState("");
+  const { taskDates, transTask } = useContext(TaskDateContext);
 
-
-
-  // this value is for the calender
-  const [value, setValue] = React.useState(dayjs('2025-06-17'));
-
-  // const [calendID,setCalendId]= React.useState(0)
-   
-  const {taskDates,taskId,transTask} = useContext(TaskDateContext) // this is for the date of the task
-
- const [newTaskName, setNewTaskName] = React.useState("");
-
-
-
-
-
-
-
-let currentDate = taskDates[taskId]
-
- transTask.map((it)=>{
-console.log('transTask id :', it.transTaskId)
-console.log('transTask task :', it.transTaskName)
-const newDate = taskDates[it.transTaskId] 
-console.log('taskDate: ',taskDates)
-console.log('newDate of it.transTaskId : ',newDate)
-
-
-if (newDate && newDate.isSame(value)) {
-  console.log("Dates match!");
-  console.log(it.transTaskName)
-}
-})
-
-
-
-
-
- // check thier formated strings 
-
-// if (currentDate && currentDate.isSame(value)) {
-//   console.log("Dates match!");
-// }
-
-
-// if (taskDates.format() === value.format()) {      
-//   console.log("hello");
-//   console.log(taskDates.format('YYYY-MM-DD '))
-//   console.log(value.format('YYYY-MM-DD'))
-// }
+  const handleCheckTasks = () => {
+    transTask.forEach((task) => {
+      const date = taskDates[task.transTaskId];
+      if (date && date.isSame(value, 'day')) {
+        setNewTaskName(task.transTaskName);
+        setOpen(true);
+      }
+    });
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DateCalendar', 'DateCalendar']}>
+      <DemoContainer components={['DateCalendar']}>
         <DemoItem label="Controlled calendar">
-          <DateCalendar value={value} onChange={(newValue) => {setValue(newValue)}} />
-            
-            <Button style={{cursor:'pointer'}} onClick={()=>{
-              // console.log(value.format('YYYY-MM-DD'))
-              transTask.map(t => {
-                const newDate = taskDates[t.transTaskId]
-                console.log(newDate)
-                if (newDate && newDate.isSame(value)){
-                  console.log('Dates Match !')
-                  setNewTaskName(t.transTaskName)
-                   handleOpen()
-                }
-              });
-            
-            }} 
-            >{value.format('YYYY-MM-DD')}</Button>
-           
+          <DateCalendar value={value} onChange={(newValue) => setValue(newValue)} />
+          <Button onClick={handleCheckTasks}>{value.format('YYYY-MM-DD')}</Button>
         </DemoItem>
       </DemoContainer>
-
-      {/* this is a popup modal */}
-              <div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={() => setOpen(false)}>
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {newTaskName}
-          </Typography>
+          <Typography variant="h6">Task for the day</Typography>
+          <Typography>{newTaskName}</Typography>
         </Box>
       </Modal>
-      
-    </div>
-    
-                
-
     </LocalizationProvider>
   );
 }
