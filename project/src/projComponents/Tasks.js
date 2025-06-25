@@ -82,7 +82,7 @@ export default function Tasks (){
                     setCheckedValue(checkedValue + 10)
                     
                 }else{
-                     console.log(checkedValue)   
+                      setCheckedValue(checkedValue - 10)  
                 }
                 }}/> 
                 <p style={{ margin: 0 }}>{itm.taskname}</p>

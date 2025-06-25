@@ -4,7 +4,10 @@ import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimeClock } from '@mui/x-date-pickers/TimeClock';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import Button from '@mui/material/Button';
+import { useEffect } from 'react';
+
 
 export default function TimeClockValue() {
   const [value, setValue] = React.useState(dayjs('2022-04-17T00:00'));
@@ -13,16 +16,65 @@ export default function TimeClockValue() {
   const handleClockValue=()=>{
     setCklockValue(value)
   }
+  const handlclockReset = ()=>{
+    setCklockValue((dayjs('2022-04-17T00:00')))
+    setValue(dayjs('2022-04-17T00:00'))
+    setAlarmTriggered(false)
+     console.log(value)
+  }
+ 
+  const[alarmTriggered,setAlarmTriggered]=React.useState(false)
+
+useEffect(()=>{
+  console.log('counter has started')
+
+let timer = setInterval(()=>{
+
+const now = dayjs()
+const formatedTime = now.format('HH:mm')
+//  console.log(now)
+// console.log(formatedTime)
+
+if(formatedTime === clockvalue.format('HH:mm') && !alarmTriggered){
+  alert('alarm')
+  setAlarmTriggered(true)
+}
+
+},1000)
+ 
+
+return ()=> {
+  clearInterval(timer)
+  console.log('counter has stooped')
+}
+
+
+},[clockvalue,alarmTriggered])
+
+
+
+
+
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['TimeClock', 'TimeClock']}>
+      <DemoContainer components={[ 'TimePicker']}>
         
-        <DemoItem label="Controlled clock">
-          <TimeClock value={value} onChange={(newValue) => setValue(newValue)} />
-        </DemoItem>
-        <p> {clockvalue.format('HH:mm')}</p>
-        <Button color='success' onClick={handleClockValue}>Start</Button>
+        <TimePicker
+          label="Controlled picker"
+          value={value}
+          onChange={(newValue) => setValue(newValue)}
+        />
+        
+        <div style={{display:'flex', marginLeft:'30px'}}>
+          <p style={{fontSize:'20px',marginRight:'10px'}}> {clockvalue.format('HH:mm')}</p>
+          <Button color='success' onClick={handleClockValue}>Start</Button>
+        <Button color='success' onClick={()=>{
+          handlclockReset()
+          
+          }}>Reset</Button>
+        </div>
+        
       </DemoContainer>
     </LocalizationProvider>
   );
