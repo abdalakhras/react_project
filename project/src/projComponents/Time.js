@@ -62,7 +62,7 @@ return ()=> {
       <DemoContainer components={[ 'TimePicker']}>
         
         <TimePicker
-          label="Controlled picker"
+          label="Set Alarm"
           value={value}
           onChange={(newValue) => setValue(newValue)}
         />

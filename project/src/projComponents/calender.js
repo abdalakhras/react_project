@@ -84,7 +84,7 @@ if (newDate && newDate.isSame(value)) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DateCalendar', 'DateCalendar']}>
-        <DemoItem label="Controlled calendar">
+        <DemoItem label="Pick your Date to show Task">
           <DateCalendar value={value} onChange={(newValue) => {setValue(newValue)}} />
             
             <Button style={{cursor:'pointer'}} onClick={()=>{

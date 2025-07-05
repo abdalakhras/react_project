@@ -32,7 +32,7 @@ export default function Progress(){
             <div className="prog-container">
                 <div id="bar" className="prog-green" style={{ width: `${checkedValue}%` }}>{checkedValue}%</div>
             </div>
-            <Button>progress</Button>
+            <Button>Task Progress</Button>
         </div>
     )
 }
