@@ -100,7 +100,7 @@ if (newDate && newDate.isSame(value)) {
               });
             
             }} 
-            >{value.format('YYYY-MM-DD')}</Button>
+            >Show Task</Button>
            
         </DemoItem>
       </DemoContainer>

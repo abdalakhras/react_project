@@ -45,16 +45,16 @@ const [open, setOpen] = React.useState(false);
     <div className='BasicGrid-Margin'>
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2} id='Grid-spacing'>
-        <Grid size={2}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <Item><MediaCard/></Item>
         </Grid>
-        <Grid size={2}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Item><MediaCard/></Item>
         </Grid>
-        <Grid size={2}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Item><MediaCard/></Item>
         </Grid>
-        <Grid size={2}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <Item><MediaCard/></Item>
         </Grid>
         {/* <Grid><Item><img onClick={handleOpen} src='/pngwing 3.png'/></Item></Grid> */}

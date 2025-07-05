@@ -30,8 +30,8 @@ export default function Tasks (){
     const taskObject= {id:iD, taskname:newTask, }
 
    
- 
-   
+ const [checkedTasks,setCheckedTasks]=useState({})
+   console.log(checkedTasks)
 
     
     
@@ -73,17 +73,18 @@ export default function Tasks (){
             </form>
             <div>
              {listOfTasks.map((itm)=>(
-                <div key={itm.id}   style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div key={itm.id}   style={{ display: 'flex', alignItems: 'center', gap: '8px', width:'100%' }}>
 
                <Checkbox {...label} onChange={(e)=>{
                 console.log(e.target.checked)
                 if(e.target.checked){
                     console.log(checkedValue)
-                    setCheckedValue(checkedValue + 10)
+                    setCheckedValue(checkedValue + 100/listOfTasks.length)
                     
                 }else{
-                      setCheckedValue(checkedValue - 10)  
+                      setCheckedValue(checkedValue - 100/listOfTasks.length)  
                 }
+                setCheckedTasks({...checkedTasks,[itm.id]:e.target.checked})
                 }}/> 
                 <p style={{ margin: 0 }}>{itm.taskname}</p>
                 <p style={{margin:"5px 10px"}}><span style={{color:'blue',}}>{'date'}</span></p>
@@ -109,9 +110,14 @@ export default function Tasks (){
 
                 <Button color="error" onClick={()=>{
                     const newListOfTasks = listOfTasks.filter((t)=>{
-                       return t.id != itm.id
+                        setCheckedTasks({...checkedTasks,[t.id]: false})
+                        console.log(checkedTasks)
+                       return  t.id != itm.id
                     })
                     setListOfTasks(newListOfTasks)
+                     const checkedCount = Object.values(checkedTasks).filter(Boolean).length;
+                    console.log(checkedCount)
+                     setCheckedValue(100/newListOfTasks.length * checkedCount ) 
                 }}><DeleteForeverIcon/></Button>
 
                 

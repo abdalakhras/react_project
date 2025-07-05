@@ -57,6 +57,7 @@ return ()=> {
 
 
   return (
+    <div style={{width:'100%', }}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={[ 'TimePicker']}>
         
@@ -68,7 +69,7 @@ return ()=> {
         
         <div style={{display:'flex', marginLeft:'30px'}}>
           <p style={{fontSize:'20px',marginRight:'10px'}}> {clockvalue.format('HH:mm')}</p>
-          <Button color='success' onClick={handleClockValue}>Start</Button>
+          <Button color='success' onClick={handleClockValue}>Start Alarm</Button>
         <Button color='success' onClick={()=>{
           handlclockReset()
           
@@ -77,5 +78,6 @@ return ()=> {
         
       </DemoContainer>
     </LocalizationProvider>
+    </div>
   );
 }

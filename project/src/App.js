@@ -32,7 +32,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function App() {
 
-const[checkedValue,setCheckedValue]=useState(10)  
+const[checkedValue,setCheckedValue]=useState(0)  
 
 const[taskDates,setTaskDates]=useState({})
 const [taskId,setTaskId] = useState(-10)
@@ -47,16 +47,16 @@ const[transTask,setTransTask]=useState([])
        <br/>
         <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid size={6}>
+        <Grid size={{ xs: 12, sm: 8, md:6 }}>
           <Item><Tasks/></Item>
         </Grid>
-        <Grid size={4}>
+        <Grid size={{ xs: 12, sm: 8, md:6  }}>
           <Item><ResponsiveDatePickers /></Item>
         </Grid>
-        <Grid size={4}>
+        <Grid size={{ xs: 12, sm: 8,  md:6  }}>
           <Item><Progress/></Item>
         </Grid>
-        <Grid size={4}>
+        <Grid size={{ xs: 12, sm: 8,  md:6  }}>
           <Item><TimeClockValue/></Item>
         </Grid>
       </Grid>
