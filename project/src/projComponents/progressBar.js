@@ -9,6 +9,7 @@ export default function Progress(){
  const {checkedValue} = useContext(ChartContext)
  console.log(checkedValue)
 
+ 
 // const [progress, setProgress] = useState(20);
 //   const intervalRef = useRef(null);
 

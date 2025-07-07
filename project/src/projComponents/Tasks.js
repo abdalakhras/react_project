@@ -67,6 +67,9 @@ export default function Tasks (){
                console.log(iD)
                console.log('listOfTasks:', listOfTasks)
                
+               const checkedCountx = Object.values(checkedTasks).filter(Boolean).length;
+               setCheckedValue(100/listOfTasks.length * checkedCountx )
+               
             }}> 
             <input type="text" placeholder="Add a Task" onChange={(e)=>{setNewTask(e.target.value)}}></input>
             <Button color="success" type="submit">ADD</Button>
