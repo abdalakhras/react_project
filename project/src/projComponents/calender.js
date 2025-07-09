@@ -32,9 +32,15 @@ const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
 
 
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
 
+today =  yyyy + '-' + mm + "-" + dd;
+console.log(today)
   // this value is for the calender
-  const [value, setValue] = React.useState(dayjs('2025-06-17'));
+  const [value, setValue] = React.useState(dayjs(today));
 
   // const [calendID,setCalendId]= React.useState(0)
    
@@ -83,7 +89,7 @@ if (newDate && newDate.isSame(value)) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DateCalendar', 'DateCalendar']}>
+      <DemoContainer components={['DateCalendar']}>
         <DemoItem label="Pick your Date to show Task">
           <DateCalendar value={value} onChange={(newValue) => {setValue(newValue)}} />
             

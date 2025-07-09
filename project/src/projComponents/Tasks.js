@@ -31,7 +31,6 @@ export default function Tasks (){
 
    
  const [checkedTasks,setCheckedTasks]=useState({})
-   console.log(checkedTasks)
 
     
     
@@ -62,13 +61,16 @@ export default function Tasks (){
                 e.preventDefault()  
 
                 setID(listOfTasks.length)
+                console.log(iD)
                setListOfTasks([...listOfTasks,taskObject])
-                console.log(listOfTasks.length)
-               console.log(iD)
+               setCheckedTasks({...checkedTasks,[listOfTasks.length]:false}) // works normally without it , but keep it in code better
+               console.log(checkedTasks)
+                console.log(listOfTasks.length + 1)
+               console.log(Object.values(checkedTasks).filter(Boolean).length)
                console.log('listOfTasks:', listOfTasks)
                
                const checkedCountx = Object.values(checkedTasks).filter(Boolean).length;
-               setCheckedValue(100/listOfTasks.length * checkedCountx )
+               setCheckedValue(100/(listOfTasks.length + 1) * checkedCountx )
                
             }}> 
             <input type="text" placeholder="Add a Task" onChange={(e)=>{setNewTask(e.target.value)}}></input>
@@ -93,8 +95,10 @@ export default function Tasks (){
                 <p style={{margin:"5px 10px"}}><span style={{color:'blue',}}>{'date'}</span></p>
                 {/* this is the date part */}
      <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DateField', 'DateField']}>
-        <DateField
+      <DemoContainer components={['DateField']}>
+      {/* <div style={{width:"300px"}}> */}
+ <DateField
+ size="small"
           label="Pick A Date"
           value={taskDates[itm.id]}
           onChange={(newValue) => {
@@ -103,20 +107,28 @@ export default function Tasks (){
             setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname}])
             console.log('taskId is:', taskId )
            } }
+           fullWidth = {true}
+      
         />
+      {/* </div> */}
+       
       </DemoContainer>
-      <Button onClick={()=>{
+      {/* <Button onClick={()=>{
         console.log(taskDates)
         console.log(taskDates[itm.id].format('YYYY-MM-DD'))
-        }}>set</Button>
+        }}>set</Button> */}
     </LocalizationProvider>
 
                 <Button color="error" onClick={()=>{
                     const newListOfTasks = listOfTasks.filter((t)=>{
-                        setCheckedTasks({...checkedTasks,[t.id]: false})
+                        // setCheckedTasks({...checkedTasks,[t.id]: false}) this doesn't work , so we decided to delete the checked {true or false} from the object in line 127
                         console.log(checkedTasks)
                        return  t.id != itm.id
                     })
+                    delete checkedTasks[`${itm.id}`] // this is to delete the checked {true or false} from the object
+                    console.log(checkedTasks)
+                    setCheckedTasks(checkedTasks) 
+                
                     setListOfTasks(newListOfTasks)
                      const checkedCount = Object.values(checkedTasks).filter(Boolean).length;
                     console.log(checkedCount)
