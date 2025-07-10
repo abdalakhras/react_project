@@ -93,7 +93,7 @@ export default function Tasks (){
                 setCheckedTasks({...checkedTasks,[itm.id]:e.target.checked})
                 }}/> 
                 <p style={{ margin: 0 }}>{itm.taskname}</p>
-                <p style={{margin:"5px 10px"}}><span style={{color:'blue',}}>{'date'}</span></p>
+                <p style={{margin:"5px 10px"}}><span style={{color:'blue',}}>{'=>'}</span></p>
                 {/* this is the date part */}
      <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker']}>

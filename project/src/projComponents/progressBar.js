@@ -9,24 +9,6 @@ export default function Progress(){
  const {checkedValue} = useContext(ChartContext)
  console.log(checkedValue)
 
- 
-// const [progress, setProgress] = useState(20);
-//   const intervalRef = useRef(null);
-
-//   const move = () => {
-//     if (intervalRef.current) return; // prevent multiple intervals
-
-//     intervalRef.current = setInterval(() => {
-//       setProgress(prev => {
-//         if (prev >= 100) {
-//           clearInterval(intervalRef.current);
-//           intervalRef.current = null;
-//           return 100;
-//         }
-//         return prev + 1;
-//       });
-//     }, 100);
-//   };
 
     return(
         <div>

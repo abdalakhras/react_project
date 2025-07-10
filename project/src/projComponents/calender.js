@@ -49,7 +49,7 @@ const [open2, setOpen2] = React.useState(false);
   // this value is for the calender
   const [value, setValue] = React.useState(dayjs());
 
-  // const [calendID,setCalendId]= React.useState(0)
+ 
    
   const {taskDates,taskId,transTask} = useContext(TaskDateContext) // this is for the date of the task
 
@@ -106,7 +106,7 @@ if(newDate.isSame(value,'day')) {
           <DateCalendar
            value={value} onChange={(newValue) => {setValue(newValue)}}
            
-           sx={{width:"100%",margin:"auto !important", backgroundColor:"crimson"}} 
+           sx={{width:"100%",margin:"auto !important", backgroundColor:"wheat"}} 
            />
             
             <Button style={{cursor:'pointer'}} onClick={()=>{
@@ -120,10 +120,10 @@ if(newDate.isSame(value,'day')) {
                    handleOpen()
                    
                 }
-                // else{
-                //   handleOpen2()
+                else{
+                alert('no Tasks on specified Date')
                  
-                // }
+                }
 
               });
             

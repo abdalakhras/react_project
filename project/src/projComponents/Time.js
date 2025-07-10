@@ -25,6 +25,11 @@ export default function TimeClockValue() {
  
   const[alarmTriggered,setAlarmTriggered]=React.useState(false)
 
+  const playSound = ()=>{
+    const audio = new Audio('/sounds/mixkit-classic-alarm-995.wav')
+    audio.play()
+  }
+
 useEffect(()=>{
   console.log('counter has started')
 
@@ -36,7 +41,8 @@ const formatedTime = now.format('HH:mm')
 // console.log(formatedTime)
 
 if(formatedTime === clockvalue.format('HH:mm') && !alarmTriggered){
-  alert('alarm')
+  playSound()
+  alert('End of Task')
   setAlarmTriggered(true)
    handlclockReset()
 }
