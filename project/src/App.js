@@ -11,6 +11,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import TimeClockValue from './projComponents/Time';
 import ChartContext from './projComponents/chartContext';
 import { useState,useContext } from 'react';
@@ -45,19 +46,24 @@ const[transTask,setTransTask]=useState([])
         <TaskDateContext.Provider value={{taskDates,setTaskDates,taskId,setTaskId,transTask,setTransTask}} >
        {/* <ResponsiveAppBar/> */}
        <br/>
-        <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
+        <Box sx={{ flexGrow: 1, margin:'20px 10px' }}>
+      <Grid container spacing={6}>
         <Grid size={{ xs: 12, sm: 8, md:6 }}>
-          <Item><Tasks/></Item>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 8, md:6  }}>
-          <Item><ResponsiveDatePickers /></Item>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 8,  md:6  }}>
+          <Stack spacing={4}>
+          <Item><Tasks/></Item>     
+          {/* this is to show ResponsiveDatePickers in xs and sm just below Task, but not in md */}
+          <Box sx={{display:{xs:'block',md:'none'}}}>
+            <Item><ResponsiveDatePickers/></Item>
+            </Box>  
           <Item><Progress/></Item>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 8,  md:6  }}>
           <Item><TimeClockValue/></Item>
+          </Stack>
+         </Grid>
+         {/* this is to show ResponsiveDatePickers only in md on the right side , not in xs and sm */}
+        <Grid size={{ xs: 12, sm: 8, md:4  }}
+              sx={{display:{xs:"none",md:"block"}}}
+        >
+          <Item sx={{ height: '100%', boxSizing: 'border-box' }}><ResponsiveDatePickers /></Item>
         </Grid>
       </Grid>
     </Box>

@@ -38,6 +38,7 @@ const formatedTime = now.format('HH:mm')
 if(formatedTime === clockvalue.format('HH:mm') && !alarmTriggered){
   alert('alarm')
   setAlarmTriggered(true)
+   handlclockReset()
 }
 
 },1000)

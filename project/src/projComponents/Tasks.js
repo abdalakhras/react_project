@@ -9,9 +9,10 @@ import { styled } from '@mui/material/styles';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ChartContext from "./chartContext";
 import dayjs from 'dayjs';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DateField } from '@mui/x-date-pickers/DateField';
 import TaskDateContext from "./taskDateContext";
 
@@ -95,10 +96,10 @@ export default function Tasks (){
                 <p style={{margin:"5px 10px"}}><span style={{color:'blue',}}>{'date'}</span></p>
                 {/* this is the date part */}
      <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DateField']}>
-      {/* <div style={{width:"300px"}}> */}
- <DateField
- size="small"
+      <DemoContainer components={['DatePicker']}>
+       <DemoItem >
+ <DatePicker  className="DateField-BKG"
+
           label="Pick A Date"
           value={taskDates[itm.id]}
           onChange={(newValue) => {
@@ -106,11 +107,20 @@ export default function Tasks (){
             setTaskId(itm.id)
             setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname}])
             console.log('taskId is:', taskId )
+            console.log(taskDates)
            } }
-           fullWidth = {true}
+           
+         fullWidth={true}
+         
+
+      sx={{
+        minWidth: '10px !important',
+        
+      }}
+    
       
         />
-      {/* </div> */}
+     </DemoItem>
        
       </DemoContainer>
       {/* <Button onClick={()=>{

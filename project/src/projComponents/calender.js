@@ -31,16 +31,23 @@ const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  // this is for the popup modal 2
+const [open2, setOpen2] = React.useState(false);
+  const handleOpen2 = () => setOpen2(true);
+  const handleClose2 = () => setOpen2(false);
 
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
 
-today =  yyyy + '-' + mm + "-" + dd;
-console.log(today)
+
+// var today = new Date();
+// var dd = String(today.getDate()).padStart(2, '0');
+// var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+// var yyyy = today.getFullYear();
+
+// today =  yyyy + '-' + mm + "-" + dd;
+// console.log(today)
+
   // this value is for the calender
-  const [value, setValue] = React.useState(dayjs(today));
+  const [value, setValue] = React.useState(dayjs());
 
   // const [calendID,setCalendId]= React.useState(0)
    
@@ -51,8 +58,7 @@ console.log(today)
 
 
 
-
-
+console.log(value)
 
 let currentDate = taskDates[taskId]
 
@@ -63,11 +69,16 @@ const newDate = taskDates[it.transTaskId]
 console.log('taskDate: ',taskDates)
 console.log('newDate of it.transTaskId : ',newDate)
 
-
-if (newDate && newDate.isSame(value)) {
-  console.log("Dates match!");
-  console.log(it.transTaskName)
+if(newDate.isSame(value,'day')) { 
+  console.log(true)
+}else{
+   console.log(false)
 }
+
+// if (newDate && newDate.isSame(value)) {
+//   console.log("Dates match!");
+//   console.log(it.transTaskName)
+// }
 })
 
 
@@ -88,21 +99,32 @@ if (newDate && newDate.isSame(value)) {
 // }
 
   return (
+    <div style={{width:"100%",height:"100%" ,border:'solid black 2px'}}> 
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DateCalendar']}>
         <DemoItem label="Pick your Date to show Task">
-          <DateCalendar value={value} onChange={(newValue) => {setValue(newValue)}} />
+          <DateCalendar
+           value={value} onChange={(newValue) => {setValue(newValue)}}
+           
+           sx={{width:"100%",margin:"auto !important", backgroundColor:"crimson"}} 
+           />
             
             <Button style={{cursor:'pointer'}} onClick={()=>{
               // console.log(value.format('YYYY-MM-DD'))
               transTask.map(t => {
                 const newDate = taskDates[t.transTaskId]
                 console.log(newDate)
-                if (newDate && newDate.isSame(value)){
+                if (newDate && newDate.isSame(value,"day")){
                   console.log('Dates Match !')
                   setNewTaskName(t.transTaskName)
                    handleOpen()
+                   
                 }
+                // else{
+                //   handleOpen2()
+                 
+                // }
+
               });
             
             }} 
@@ -130,9 +152,30 @@ if (newDate && newDate.isSame(value)) {
       </Modal>
       
     </div>
+
+    {/* this is a popup modal 2 */}
+              <div>
+      <Modal
+        open={open2}
+        onClose={handleClose2}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal 2
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            No Tasks on this date
+          </Typography>
+        </Box>
+      </Modal>
+      
+    </div>
     
                 
 
     </LocalizationProvider>
+    </div>
   );
 }
