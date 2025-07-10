@@ -50,7 +50,7 @@ return ()=> {
 }
 
 
-},[clockvalue,alarmTriggered])
+},[clockvalue,alarmTriggered]) // the dependency array is to re-run the useEfffect , which first cleans-up the previous effect , using clearInterval
 
 
 
