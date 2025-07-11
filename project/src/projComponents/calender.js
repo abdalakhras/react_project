@@ -106,7 +106,7 @@ if(newDate.isSame(value,'day')) {
           <DateCalendar
            value={value} onChange={(newValue) => {setValue(newValue)}}
            
-           sx={{width:"100%",margin:"auto !important", backgroundColor:"wheat"}} 
+           sx={{width:"100%",margin:"auto !important",}} 
            />
             
             <Button style={{cursor:'pointer'}} onClick={()=>{

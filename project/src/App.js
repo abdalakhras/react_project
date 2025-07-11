@@ -19,6 +19,17 @@ import Progress from './projComponents/progressBar';
 import TaskDateContext from './projComponents/taskDateContext';
 import dayjs from 'dayjs';
 import DateCalendarValue from './projComponents/calender';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import MyApp from './projComponents/darkTheme';
+
+const darkTheme = createTheme({
+  colorSchemes: {
+    dark: true,
+  
+  },
+});
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -42,12 +53,16 @@ const[transTask,setTransTask]=useState([])
   return (
      
     <div className="App">
+      <ThemeProvider theme={darkTheme}>
+         <CssBaseline />
+         <main>
       <ChartContext.Provider value={{checkedValue,setCheckedValue}}>
         <TaskDateContext.Provider value={{taskDates,setTaskDates,taskId,setTaskId,transTask,setTransTask}} >
        {/* <ResponsiveAppBar/> */}
+      <MyApp/>
        <br/>
-        <Box sx={{ flexGrow: 1, margin:'20px 10px' }}>
-      <Grid container spacing={6}>
+        <Box sx={{ flexGrow: 1, margin:'20px 20px',}}>
+      <Grid container spacing={8}>
         <Grid size={{ xs: 12, sm: 8, md:6 }}>
           <Stack spacing={4}>
           <Item><Tasks/></Item>     
@@ -69,6 +84,8 @@ const[transTask,setTransTask]=useState([])
     </Box>
        </TaskDateContext.Provider>
       </ChartContext.Provider>
+      </main>
+      </ThemeProvider>
     </div>
   );
 }
