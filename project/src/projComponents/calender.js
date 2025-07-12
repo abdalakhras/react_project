@@ -120,10 +120,10 @@ if(newDate.isSame(value,'day')) {
                    handleOpen()
                    
                 }
-                else{
-                alert('no Tasks on specified Date')
+                // else{
+                // alert('no Tasks on specified Date')
                  
-                }
+                // }
 
               });
             

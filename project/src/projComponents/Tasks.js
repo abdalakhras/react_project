@@ -15,6 +15,20 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DateField } from '@mui/x-date-pickers/DateField';
 import TaskDateContext from "./taskDateContext";
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
    
 
@@ -23,6 +37,11 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function Tasks (){
 
+
+     const [open, setOpen] = React.useState(false);
+      const handleOpen = () => setOpen(true);
+      const handleClose = () => setOpen(false);
+
     
     const{checkedValue,setCheckedValue}=useContext(ChartContext)   
 
@@ -30,6 +49,7 @@ export default function Tasks (){
     const [iD,setID]=useState(0)
     const taskObject= {id:iD, taskname:newTask, }
 
+    const [editTaskName,setEditTaskName]=useState('')
    
  const [checkedTasks,setCheckedTasks]=useState({})
 
@@ -92,8 +112,8 @@ export default function Tasks (){
                 }
                 setCheckedTasks({...checkedTasks,[itm.id]:e.target.checked})
                 }}/> 
-                <p style={{ margin: 0 }}>{itm.taskname}</p>
-                <p style={{margin:"5px 10px"}}><span style={{color:'blue',}}>{'=>'}</span></p>
+                <Typography color="secondary.main" style={{ margin: 0 }}>{itm.taskname}</Typography>
+                <p style={{margin:"5px 10px"}}><span style={{color:'blue',fontSize:"20Px"}}>{'=>'}</span></p>
                 {/* this is the date part */}
      <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker']}>
@@ -123,10 +143,10 @@ export default function Tasks (){
      </DemoItem>
        
       </DemoContainer>
-      {/* <Button onClick={()=>{
-        console.log(taskDates)
-        console.log(taskDates[itm.id].format('YYYY-MM-DD'))
-        }}>set</Button> */}
+      <Button onClick={()=>{
+        handleOpen()
+        
+         }}>edit TaskName</Button>
     </LocalizationProvider>
 
                 <Button color="error" onClick={()=>{
@@ -145,15 +165,42 @@ export default function Tasks (){
                      setCheckedValue(100/newListOfTasks.length * checkedCount ) 
                 }}><DeleteForeverIcon/></Button>
 
-                
+                <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <form onSubmit={(e)=>{
+            e.preventDefault()
+            handleClose()
+            const editedTaskName = listOfTasks.map((t)=>{
+            if(t.id === itm.id){
+                return {...t,taskname:editTaskName}
+            }else{
+                return t 
+            }
+        })
+       
+       setListOfTasks(editedTaskName) 
+          }}>
+         <input type="text" placeholder="edit taskName" onChange={(e)=>{setEditTaskName(e.target.value)}}></input>
+         <Button type="submit">submit</Button>
+        </form>
+        </Box>
+      </Modal>
                     
                 </div>
              ))}
 
              
 
-            </div>
 
+            </div>
 
 
   
