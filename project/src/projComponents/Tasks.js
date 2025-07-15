@@ -56,7 +56,7 @@ export default function Tasks (){
     
     
     const[listOfTasks,setListOfTasks] =useState([
-        {id:-1,taskname:'Firts Task'},
+        {id:-1,taskname:'Firts Task',checkdvalue:checkedValue},
         // {id:0,taskname:'secondTask'},
         // {id:2,taskname:'thirdTask'},
     ])
@@ -103,11 +103,13 @@ export default function Tasks (){
 
                <Checkbox {...label} onChange={(e)=>{
                 console.log(e.target.checked)
+                setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname,transValue:itm.checkdvalue}])
+                console.log('itm.checkedValue',itm.checkdvalue)
                 if(e.target.checked){
                     console.log(checkedValue)
                     setCheckedValue(checkedValue + 100/listOfTasks.length)
 
-                     setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname}])
+                     
                 }else{
                       setCheckedValue(checkedValue - 100/listOfTasks.length)  
                 }

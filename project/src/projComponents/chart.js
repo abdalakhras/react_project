@@ -10,18 +10,30 @@ export default function BasicPie() {
 
   const {checkedValue} = useContext(ChartContext)
   const{transTask,setTransTask} = useContext(TaskDateContext)
+  const[updatedTransTask,setUpdatedTransTask]=React.useState([])
+  
   
   React.useEffect(()=>{
 
-console.log(transTask)
-// setTransTask([...transTask,{id:'',value:'',label:''}])
+console.log('transTask-Original',transTask)
+transTask.map((n)=>{
+
+ setUpdatedTransTask([...updatedTransTask,{id:n.transTaskId,value:checkedValue[n.transTaskId],label:n.transTaskName}])
+  
+
+})
+
 
   },[checkedValue])
+  
+  console.log('transTask-Updated',updatedTransTask)
 
   return (
     <PieChart
+    
       series={[
-        {
+        { 
+         
           data: [
             { id: 0, value: checkedValue, label: 'series A' },
             { id: 1, value: 20, label: 'series B' },

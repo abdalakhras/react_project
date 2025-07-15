@@ -69,7 +69,7 @@ const newDate = taskDates[it.transTaskId]
 console.log('taskDate: ',taskDates)
 console.log('newDate of it.transTaskId : ',newDate)
 
-if(newDate.isSame(value,'day')) { 
+if(newDate && newDate.isSame(value,'day')) { 
   console.log(true)
 }else{
    console.log(false)
