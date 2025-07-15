@@ -2,16 +2,21 @@ import * as React from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { useContext } from 'react';
 import ChartContext from './chartContext';
+import TaskDateContext from './taskDateContext';
 
 
 
 export default function BasicPie() {
 
   const {checkedValue} = useContext(ChartContext)
-  console.log (checkedValue)
-  const x = 30-checkedValue
-  console.log(checkedValue)
-  console.log (x)
+  const{transTask,setTransTask} = useContext(TaskDateContext)
+  
+  React.useEffect(()=>{
+
+console.log(transTask)
+// setTransTask([...transTask,{id:'',value:'',label:''}])
+
+  },[checkedValue])
 
   return (
     <PieChart
@@ -19,8 +24,8 @@ export default function BasicPie() {
         {
           data: [
             { id: 0, value: checkedValue, label: 'series A' },
-            { id: 1, value: x, label: 'series B' },
-            { id: 2, value: 20, label: 'series C' },
+            { id: 1, value: 20, label: 'series B' },
+            // { id: 2, value: 20, label: 'series C' },
           ],
         },
       ]}

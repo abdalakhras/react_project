@@ -106,7 +106,8 @@ export default function Tasks (){
                 if(e.target.checked){
                     console.log(checkedValue)
                     setCheckedValue(checkedValue + 100/listOfTasks.length)
-                    
+
+                     setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname}])
                 }else{
                       setCheckedValue(checkedValue - 100/listOfTasks.length)  
                 }
