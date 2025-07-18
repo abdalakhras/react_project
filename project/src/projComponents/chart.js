@@ -9,18 +9,19 @@ import TaskDateContext from './taskDateContext';
 export default function BasicPie() {
 
   const {checkedValue} = useContext(ChartContext)
-  const{transTask,setTransTask} = useContext(TaskDateContext)
+  const{transTask,setTransTask,taskId} = useContext(TaskDateContext)
   const[updatedTransTask,setUpdatedTransTask]=React.useState([])
   
   
   React.useEffect(()=>{
 
 console.log('transTask-Original',transTask)
+
 transTask.map((n)=>{
 
- setUpdatedTransTask([...updatedTransTask,{id:n.transTaskId,value:checkedValue[n.transTaskId],label:n.transTaskName}])
+ setUpdatedTransTask([...updatedTransTask,{id:n.transTaskId,value:n.transValue,label:n.transTaskName}])
   
-
+console.log('itm.checkedValue',n.transValue)
 })
 
 
@@ -34,11 +35,11 @@ transTask.map((n)=>{
       series={[
         { 
          
-          data: [
-            { id: 0, value: checkedValue, label: 'series A' },
-            { id: 1, value: 20, label: 'series B' },
-            // { id: 2, value: 20, label: 'series C' },
-          ],
+          data: updatedTransTask.map((m)=>({
+            id : m.id,
+            label : m.label , 
+            value : m.value,
+          })),
         },
       ]}
       width={200}

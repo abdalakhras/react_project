@@ -103,17 +103,23 @@ export default function Tasks (){
 
                <Checkbox {...label} onChange={(e)=>{
                 console.log(e.target.checked)
-                setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname,transValue:itm.checkdvalue}])
-                console.log('itm.checkedValue',itm.checkdvalue)
+                
                 if(e.target.checked){
                     console.log(checkedValue)
                     setCheckedValue(checkedValue + 100/listOfTasks.length)
 
-                     
+                     itm.checkdvalue =  100/listOfTasks.length
                 }else{
                       setCheckedValue(checkedValue - 100/listOfTasks.length)  
+
+                      itm.checkdvalue = 0
                 }
                 setCheckedTasks({...checkedTasks,[itm.id]:e.target.checked})
+
+                //  itm.checkdvalue =  100/listOfTasks.length
+                setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname,transValue:itm.checkdvalue}])
+                console.log('itm.checkedValue',itm.checkdvalue)
+                setTaskId(itm.id)
                 }}/> 
                 <Typography color="secondary.main" style={{ margin: 0 }}>{itm.taskname}</Typography>
                 <p style={{margin:"5px 10px"}}><span style={{color:'blue',fontSize:"20Px"}}>{'=>'}</span></p>
