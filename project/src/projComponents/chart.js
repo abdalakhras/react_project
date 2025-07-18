@@ -19,6 +19,8 @@ console.log('transTask-Original',transTask)
 
 transTask.map((n)=>{
 
+  
+
  setUpdatedTransTask([...updatedTransTask,{id:n.transTaskId,value:n.transValue,label:n.transTaskName}])
   
 console.log('itm.checkedValue',n.transValue)
