@@ -17,20 +17,20 @@ export default function BasicPie() {
 
 console.log('transTask-Original',transTask)
 
-const seen = new Set();
-  const result = [];
+const seenId = new Set();
+  const updatedTaskResult = [];
   for (let i = transTask.length - 1; i >= 0; i--) { //loops backward to find the latest update
     const item = transTask[i];
     console.log('item :',item)
-     if (!seen.has(item.transTaskId)) {
-      seen.add(item.transTaskId);
-      console.log('seen :',seen)
-      result.unshift(item)
-      console.log('result arr: ',result)
+     if (!seenId.has(item.transTaskId)) {
+      seenId.add(item.transTaskId);
+      console.log('seenId :',seenId)
+      updatedTaskResult.unshift(item)
+      console.log('updatedTaskResult arr: ',updatedTaskResult)
      }
   }
 
-result.map((n)=>{
+updatedTaskResult.map((n)=>{
 
   
 
