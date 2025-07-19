@@ -17,7 +17,20 @@ export default function BasicPie() {
 
 console.log('transTask-Original',transTask)
 
-transTask.map((n)=>{
+const seen = new Set();
+  const result = [];
+  for (let i = transTask.length - 1; i >= 0; i--) { //loops backward to find the latest update
+    const item = transTask[i];
+    console.log('item :',item)
+     if (!seen.has(item.transTaskId)) {
+      seen.add(item.transTaskId);
+      console.log('seen :',seen)
+      result.unshift(item)
+      console.log('result arr: ',result)
+     }
+  }
+
+result.map((n)=>{
 
   
 
@@ -30,6 +43,7 @@ console.log('itm.checkedValue',n.transValue)
   },[checkedValue])
   
   console.log('transTask-Updated',updatedTransTask)
+  // console.log(checkedValue)
 
   return (
     <PieChart
