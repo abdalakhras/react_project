@@ -34,9 +34,9 @@ updatedTaskResult.map((n)=>{
 
   
 
- setUpdatedTransTask([...updatedTransTask,{id:n.transTaskId,value:n.transValue,label:n.transTaskName}])
+ setUpdatedTransTask(updatedTaskResult)
   
-console.log('itm.checkedValue',n.transValue)
+// console.log('itm.checkedValue',n.transValue)
 })
 
 
@@ -52,9 +52,9 @@ console.log('itm.checkedValue',n.transValue)
         { 
          
           data: updatedTransTask.map((m)=>({
-            id : m.id,
-            label : m.label , 
-            value : m.value,
+            id : m.transTaskId,
+            label : m.transTaskName , 
+            value : m.transValue,
           })),
         },
       ]}
