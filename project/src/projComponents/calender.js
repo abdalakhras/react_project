@@ -65,8 +65,8 @@ let currentDate = taskDates[taskId]
  transTask.map((it)=>{
 console.log('transTask id :', it.transTaskId)
 console.log('transTask task :', it.transTaskName)
-const newDate = taskDates[it.transTaskId] 
 console.log('taskDate: ',taskDates)
+const newDate = taskDates[it.transTaskId] 
 console.log('newDate of it.transTaskId : ',newDate)
 
 if(newDate && newDate.isSame(value,'day')) { 
@@ -75,10 +75,12 @@ if(newDate && newDate.isSame(value,'day')) {
    console.log(false)
 }
 
-// if (newDate && newDate.isSame(value)) {
-//   console.log("Dates match!");
-//   console.log(it.transTaskName)
+// if (taskId === it.transTaskId) {
+//   console.log("ID match!");
+//   console.log('it.transTaskId :',it.transTaskId)
+//     console.log('taskId :',taskId)
 // }
+
 })
 
 
@@ -99,7 +101,7 @@ if(newDate && newDate.isSame(value,'day')) {
 // }
 
   return (
-    <div style={{width:"100%",height:"100%" ,border:'solid black 2px'}}> 
+    <div style={{width:"100%",border:'solid black 2px'}}> 
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DateCalendar']}>
         <DemoItem label="Pick your Date to show Task">
@@ -111,19 +113,21 @@ if(newDate && newDate.isSame(value,'day')) {
             
             <Button style={{cursor:'pointer'}} onClick={()=>{
               // console.log(value.format('YYYY-MM-DD'))
+              let match = false
               transTask.map(t => {
                 const newDate = taskDates[t.transTaskId]
                 console.log(newDate)
                 if (newDate && newDate.isSame(value,"day")){
+                  match = true
                   console.log('Dates Match !')
                   setNewTaskName(t.transTaskName)
                    handleOpen()
                    
                 }
-                // else{
-                // alert('no Tasks on specified Date')
+                if(!match){
+                alert('no Tasks on specified Date')
                  
-                // }
+                }
 
               });
             
