@@ -63,24 +63,24 @@ const[transTask,setTransTask]=useState([])
        <br/>
         <Box sx={{ flexGrow: 1, margin:'20px 20px',}}>
       <Grid container spacing={8}>
-        <Grid size={{ xs: 12, sm: 8, md:6 }}>
+        <Grid size={{ xs: 12, sm: 8, md:8 }}>
           <Stack spacing={4}>
           <Item><Tasks/></Item>     
           {/* this is to show ResponsiveDatePickers in xs and sm just below Task, but not in md */}
-          <Box sx={{display:{xs:'block',md:'none'}}}>
+          {/* <Box sx={{display:{xs:'block',md:'none'}}}></Box> */}
             <Item><ResponsiveDatePickers/></Item>
-            </Box>  
+            
           <Item><Progress/></Item>
           <Item><BasicPie/></Item>
           <Item><TimeClockValue/></Item>
           </Stack>
          </Grid>
          {/* this is to show ResponsiveDatePickers only in md on the right side , not in xs and sm */}
-        <Grid size={{ xs: 12, sm: 8, md:4  }}
+        {/* <Grid size={{ xs: 12, sm: 8, md:4  }}
               sx={{display:{xs:"none",md:"block"}}}
         >
-          <Item sx={{ height: '100%', boxSizing: 'border-box' }}><ResponsiveDatePickers /></Item>
-        </Grid>
+          <Item sx={{ boxSizing: 'border-box' }}><ResponsiveDatePickers /></Item>
+        </Grid> */}
       </Grid>
     </Box>
        </TaskDateContext.Provider>
