@@ -71,7 +71,7 @@ const[transTask,setTransTask]=useState([])
             <Item><ResponsiveDatePickers/></Item>
             
           <Item><Progress/></Item>
-          <Item><BasicPie/></Item>
+          {/* <Item><BasicPie/></Item> */}
           <Item><TimeClockValue/></Item>
           </Stack>
          </Grid>

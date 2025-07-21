@@ -13,6 +13,9 @@ import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+
 import { DateField } from '@mui/x-date-pickers/DateField';
 import TaskDateContext from "./taskDateContext";
 import Typography from '@mui/material/Typography';
@@ -127,7 +130,7 @@ export default function Tasks (){
      <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker']}>
        <DemoItem >
- <DatePicker  className="DateField-BKG"
+ <MobileDatePicker  className="DateField-BKG"
 
           label="Pick A Date"
           value={taskDates[itm.id]}
@@ -139,7 +142,7 @@ export default function Tasks (){
             console.log(taskDates)
            } }
            
-         fullWidth={true}
+        //  fullWidth={true}
          
 
       sx={{
