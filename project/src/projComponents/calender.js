@@ -124,13 +124,13 @@ if(newDate && newDate.isSame(value,'day')) {
                    handleOpen()
                    
                 }
-                if(!match){
+                
+              });
+            if(!match){
                 alert('no Tasks on specified Date')
                  
                 }
 
-              });
-            
             }} 
             >Show Task</Button>
            
