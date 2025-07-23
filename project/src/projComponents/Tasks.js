@@ -102,7 +102,7 @@ export default function Tasks (){
             </form>
             <div>
              {listOfTasks.map((itm)=>(
-                <div key={itm.id}   style={{ display: 'flex', alignItems: 'center', gap: '8px', width:'100%' }}>
+                <Box key={itm.id}   sx={{ display: 'flex', alignItems: 'center', gap:{xs:"2px",sm:"8px",}, width:'100%' }}>
 
                <Checkbox {...label} onChange={(e)=>{
                 console.log(e.target.checked)
@@ -124,12 +124,11 @@ export default function Tasks (){
                 console.log('itm.checkedValue',itm.checkdvalue)
                 setTaskId(itm.id)
                 }}/> 
-                <Typography color="secondary.main" style={{ margin: 0 }}>{itm.taskname}</Typography>
-                <p style={{margin:"5px 10px"}}><span style={{color:'blue',fontSize:"20Px"}}>{'=>'}</span></p>
+                <Typography color="secondary.main" sx={{ margin: 0 ,fontSize:{xs:"12px",sm:"16px"}}}>{itm.taskname}</Typography>
+                {/* <p style={{margin:"5px 10px"}}><span style={{color:'blue',fontSize:"20Px"}}>{'=>'}</span></p> */}
                 {/* this is the date part */}
      <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DatePicker']}>
-       <DemoItem >
+
  <MobileDatePicker  className="DateField-BKG"
 
           label="Pick A Date"
@@ -152,16 +151,19 @@ export default function Tasks (){
     
       
         />
-     </DemoItem>
+     
        
-      </DemoContainer>
-      <Button onClick={()=>{
+      
+      <Typography color="success"
+       onClick={()=>{
         handleOpen()
         
-         }}>edit TaskName</Button>
+         }}
+         sx={{fontSize:{xs:"12px",sm:"16px"},cursor:"pointer"}}>Edit TaskName</Typography>
     </LocalizationProvider>
 
-                <Button color="error" onClick={()=>{
+                <Typography color="error" sx={{cursor:"pointer"}}
+                onClick={()=>{
                     const newListOfTasks = listOfTasks.filter((t)=>{
                         // setCheckedTasks({...checkedTasks,[t.id]: false}) this doesn't work , so we decided to delete the checked {true or false} from the object in line 127
                         console.log(checkedTasks)
@@ -175,7 +177,7 @@ export default function Tasks (){
                      const checkedCount = Object.values(checkedTasks).filter(Boolean).length;
                     console.log(checkedCount)
                      setCheckedValue(100/newListOfTasks.length * checkedCount ) 
-                }}><DeleteForeverIcon/></Button>
+                }}><DeleteForeverIcon/></Typography>
 
                 <Modal
         open={open}
@@ -206,7 +208,7 @@ export default function Tasks (){
         </Box>
       </Modal>
                     
-                </div>
+                </Box>
              ))}
 
              
