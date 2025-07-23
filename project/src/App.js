@@ -61,8 +61,8 @@ const[transTask,setTransTask]=useState([])
        {/* <ResponsiveAppBar/> */}
       <MyApp/>
        <br/>
-        <Box sx={{ flexGrow: 1, margin:'20px 20px',}}>
-      <Grid container spacing={8}>
+        <Box sx={{ flexGrow: 1, marginTop:'20px',marginBottom:"20px", width:{md:'90vw'},marginLeft:{md:'calc(5vw)'}}}>
+      <Grid container spacing={8} sx={{marginLeft:{md:"calc(22.5vw)"}}}>
         <Grid size={{ xs: 12, sm: 8, md:8 }}>
           <Stack spacing={4}>
           <Item><Tasks/></Item>     
