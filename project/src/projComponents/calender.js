@@ -127,8 +127,8 @@ if(newDate && newDate.isSame(value,'day')) {
                 
               });
             if(!match){
-                alert('no Tasks on specified Date')
-                 
+                // alert('no Tasks on specified Date')
+                 handleOpen2()
                 }
 
             }} 
