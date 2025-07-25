@@ -177,6 +177,7 @@ export default function Tasks (){
                      const checkedCount = Object.values(checkedTasks).filter(Boolean).length;
                     console.log(checkedCount)
                      setCheckedValue(100/newListOfTasks.length * checkedCount ) 
+                     setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname,transValue:(100/newListOfTasks.length * checkedCount )}])
                 }}><DeleteForeverIcon/></Typography>
 
                 <Modal
