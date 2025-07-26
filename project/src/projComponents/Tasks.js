@@ -69,7 +69,7 @@ export default function Tasks (){
     // this is for the date field , we are creating an object for taskDates, and using the {id : } as a key
 
     
-
+    var T = 0
 
 
 
@@ -111,16 +111,16 @@ export default function Tasks (){
                     console.log(checkedValue)
                     setCheckedValue(checkedValue + 100/listOfTasks.length)
 
-                     itm.checkdvalue =  100/listOfTasks.length
+                      T =  100/listOfTasks.length
                 }else{
                       setCheckedValue(checkedValue - 100/listOfTasks.length)  
 
-                      itm.checkdvalue = 0
+                      T = 0
                 }
                 setCheckedTasks({...checkedTasks,[itm.id]:e.target.checked})
 
                 //  itm.checkdvalue =  100/listOfTasks.length
-                setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname,transValue:itm.checkdvalue}])
+                setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname,transValue:T}])
                 console.log('itm.checkedValue',itm.checkdvalue)
                 setTaskId(itm.id)
                 }}/> 
@@ -177,7 +177,13 @@ export default function Tasks (){
                      const checkedCount = Object.values(checkedTasks).filter(Boolean).length;
                     console.log(checkedCount)
                      setCheckedValue(100/newListOfTasks.length * checkedCount ) 
-                     setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname,transValue:(100/newListOfTasks.length * checkedCount )}])
+                     
+                     const delTransTask =transTask.filter((m)=>m.transTaskId != itm.id)
+                       T = 100/newListOfTasks.length 
+                      const updatedTransValue = delTransTask.map((y)=>({...y,transValue:T}))
+                     setTransTask(updatedTransValue)
+                     
+                    
                 }}><DeleteForeverIcon/></Typography>
 
                 <Modal

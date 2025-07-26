@@ -12,7 +12,7 @@ export default function BasicPie() {
   const{transTask,setTransTask,taskId} = useContext(TaskDateContext)
   const[updatedTransTask,setUpdatedTransTask]=React.useState([])
   
-  
+ 
   React.useEffect(()=>{
 
 console.log('transTask-Original',transTask)
@@ -22,11 +22,13 @@ const seenId = new Set();
   for (let i = transTask.length - 1; i >= 0; i--) { //loops backward to find the latest update
     const item = transTask[i];
     console.log('item :',item)
+    console.log('transValue',item.transValue)
      if (!seenId.has(item.transTaskId)) {
       seenId.add(item.transTaskId);
       console.log('seenId :',seenId)
       updatedTaskResult.unshift(item)
       console.log('updatedTaskResult arr: ',updatedTaskResult)
+       
      }
   }
 
