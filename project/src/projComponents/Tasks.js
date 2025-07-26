@@ -59,7 +59,7 @@ export default function Tasks (){
     
     
     const[listOfTasks,setListOfTasks] =useState([
-        {id:-1,taskname:'Firts Task',checkdvalue:checkedValue},
+        {id:-1,taskname:'Firts Task',checkdvalue:checkedValue,match:false},
         // {id:0,taskname:'secondTask'},
         // {id:2,taskname:'thirdTask'},
     ])
@@ -71,8 +71,7 @@ export default function Tasks (){
     
     var T = 0
 
-    let match = false;
-
+    
 
     return(
        
@@ -112,12 +111,14 @@ export default function Tasks (){
                     setCheckedValue(checkedValue + 100/listOfTasks.length)
 
                       T =  100/listOfTasks.length
-                      match = e.target.checked
+                     itm.match = true
+                     console.log('itm.match',itm.match)
                 }else{
                       setCheckedValue(checkedValue - 100/listOfTasks.length)  
 
                       T = 0
-                      
+                      itm.match = false
+                        console.log('itm.match',itm.match)
                 }
                 setCheckedTasks({...checkedTasks,[itm.id]:e.target.checked})
 
@@ -182,8 +183,9 @@ export default function Tasks (){
                      
                      const delTransTask =transTask.filter((m)=>m.transTaskId != itm.id)
                        T = 100/newListOfTasks.length 
+                       itm.match = false
                       const updatedTransValue = delTransTask.map((y)=>{
-                      if (y.transTaskId == itm.id && checkedTasks[`${itm.id}`]){
+                      if (itm.match == true){
                         return  {...y,transValue:T}
                       }  else{
                       return {...y,transValue:0}
