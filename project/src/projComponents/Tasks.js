@@ -71,7 +71,7 @@ export default function Tasks (){
     
     var T = 0
 
-
+    let match = false;
 
 
     return(
@@ -112,10 +112,12 @@ export default function Tasks (){
                     setCheckedValue(checkedValue + 100/listOfTasks.length)
 
                       T =  100/listOfTasks.length
+                      match = e.target.checked
                 }else{
                       setCheckedValue(checkedValue - 100/listOfTasks.length)  
 
                       T = 0
+                      
                 }
                 setCheckedTasks({...checkedTasks,[itm.id]:e.target.checked})
 
@@ -180,7 +182,16 @@ export default function Tasks (){
                      
                      const delTransTask =transTask.filter((m)=>m.transTaskId != itm.id)
                        T = 100/newListOfTasks.length 
-                      const updatedTransValue = delTransTask.map((y)=>({...y,transValue:T}))
+                      const updatedTransValue = delTransTask.map((y)=>{
+                      if (y.transTaskId == itm.id && checkedTasks[`${itm.id}`]){
+                        return  {...y,transValue:T}
+                      }  else{
+                      return {...y,transValue:0}
+                      }
+                        
+                       
+                      
+                      })
                      setTransTask(updatedTransValue)
                      
                     
