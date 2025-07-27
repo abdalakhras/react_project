@@ -122,9 +122,10 @@ export default function Tasks (){
                 }
                 setCheckedTasks({...checkedTasks,[itm.id]:e.target.checked})
 
-                //  itm.checkdvalue =  100/listOfTasks.length
-                setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname,transValue:T}])
-                console.log('itm.checkedValue',itm.checkdvalue)
+            
+                setTransTask([...transTask,{transTaskId:itm.id,transTaskName:itm.taskname,transValue:T, matched:itm.match}])
+                
+                console.log('transTask',transTask)
                 setTaskId(itm.id)
                 }}/> 
                 <Typography color="secondary.main" sx={{ margin: 0 ,fontSize:{xs:"12px",sm:"16px"}}}>{itm.taskname}</Typography>
@@ -183,9 +184,9 @@ export default function Tasks (){
                      
                      const delTransTask =transTask.filter((m)=>m.transTaskId != itm.id)
                        T = 100/newListOfTasks.length 
-                       itm.match = false
+                  
                       const updatedTransValue = delTransTask.map((y)=>{
-                      if (itm.match == true){
+                      if (y.matched == true){
                         return  {...y,transValue:T}
                       }  else{
                       return {...y,transValue:0}
