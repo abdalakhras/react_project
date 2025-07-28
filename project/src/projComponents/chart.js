@@ -11,8 +11,13 @@ export default function BasicPie() {
   const {checkedValue} = useContext(ChartContext)
   const{transTask,setTransTask,taskId} = useContext(TaskDateContext)
   const[updatedTransTask,setUpdatedTransTask]=React.useState([])
-  
- 
+let V = 0
+ console.log('transTask-Original',transTask)
+ transTask.map((v)=>{
+ V = v.transValue
+ })
+  console.log(V)
+
   React.useEffect(()=>{
 
 console.log('transTask-Original',transTask)
@@ -32,17 +37,10 @@ const seenId = new Set();
      }
   }
 
-updatedTaskResult.map((n)=>{
-
-  
-
  setUpdatedTransTask(updatedTaskResult)
-  
-// console.log('itm.checkedValue',n.transValue)
-})
 
 
-  },[checkedValue])
+  },[checkedValue,V])
   
   console.log('transTask-Updated',updatedTransTask)
   // console.log(checkedValue)

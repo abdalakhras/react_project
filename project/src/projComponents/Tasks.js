@@ -95,6 +95,7 @@ export default function Tasks (){
                const checkedCountx = Object.values(checkedTasks).filter(Boolean).length;
                setCheckedValue(100/(listOfTasks.length + 1) * checkedCountx )
                
+               T = 100/(listOfTasks.length + 1) * checkedCountx
             }}> 
             <input type="text" placeholder="Add a Task" onChange={(e)=>{setNewTask(e.target.value)}}></input>
             <Button color="success" type="submit">ADD</Button>
@@ -184,17 +185,21 @@ export default function Tasks (){
                      
                      const delTransTask =transTask.filter((m)=>m.transTaskId != itm.id)
                        T = 100/newListOfTasks.length 
-                  
+                        console.log(transTask)
+                        console.log(delTransTask)
                       const updatedTransValue = delTransTask.map((y)=>{
                       if (y.matched == true){
+                        console.log('y.matched :',y.matched)
                         return  {...y,transValue:T}
                       }  else{
+                        console.log('y.matched:',y.matched)
                       return {...y,transValue:0}
                       }
                         
                        
                       
                       })
+                      console.log('updatedTransValue:',updatedTransValue)
                      setTransTask(updatedTransValue)
                      
                     
