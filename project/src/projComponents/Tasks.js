@@ -68,7 +68,9 @@ export default function Tasks (){
     const{taskDates,setTaskDates,taskId,setTaskId,transTask,setTransTask}=useContext(TaskDateContext) // here we just set the taskDate as an object
     // this is for the date field , we are creating an object for taskDates, and using the {id : } as a key
 
-    
+    const[storedTransTasks,setStoredTransTasks]=useState([])
+
+
     var T = 0
 
     
@@ -94,18 +96,19 @@ export default function Tasks (){
                
                const checkedCountx = Object.values(checkedTasks).filter(Boolean).length;
                setCheckedValue(100/(listOfTasks.length + 1) * checkedCountx )
-              //  T = 100/(listOfTasks.length + 1) * checkedCountx 
-              // const addedTransTask =transTask.map((z)=>{
-              //   T = z.transValue 
-              // })
-              // setTransTask(addedTransTask)
+               T = 100/listOfTasks.length
+              storedTransTasks.map((z)=>{
+                setTransTask()
+              })
+              console.log()
+              
             }}> 
             <input type="text" placeholder="Add a Task" onChange={(e)=>{setNewTask(e.target.value)}}></input>
             <Button color="success" type="submit">ADD</Button>
             </form>
             <div>
              {listOfTasks.map((itm)=>(
-                <Box key={itm.id}   sx={{ display: 'flex', alignItems: 'center', gap:{xs:"2px",sm:"8px",}, width:'100%' }}>
+                <Box key={itm.id}   sx={{ display: 'flex', alignItems: 'center', gap:{xs:"2px",sm:"8px",}, width:'100%',marginTop:'10px' }}>
 
                <Checkbox {...label} onChange={(e)=>{
                 console.log(e.target.checked)
@@ -131,6 +134,10 @@ export default function Tasks (){
                 
                 console.log('transTask',transTask)
                 setTaskId(itm.id)
+
+                setStoredTransTasks([...storedTransTasks,itm])
+                console.log(storedTransTasks)
+
                 }}/> 
                 <Typography color="secondary.main" sx={{ margin: 0 ,fontSize:{xs:"12px",sm:"16px"}}}>{itm.taskname}</Typography>
                 {/* <p style={{margin:"5px 10px"}}><span style={{color:'blue',fontSize:"20Px"}}>{'=>'}</span></p> */}
